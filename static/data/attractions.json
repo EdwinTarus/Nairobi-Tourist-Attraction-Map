@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Nairobi National Museum",
+    "category": "Museum",
+    "latitude":  -1.2736115013528455,
+    "longitude": 36.81511842587062,
+    "description": "A major museum showcasing Kenya’s history, culture, nature, and contemporary heritage collections.",
+    "location_area": "Museum Hill",
+    "image": "images/attractions/nairobi-national-museum.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Kenya National Archives",
+    "category": "Museum",
+    "latitude": -1.2845854886489425,
+    "longitude": 36.8259158882145,
+    "description": "A public archive and museum preserving important historical records, photographs, and cultural artifacts.",
+    "location_area": "Nairobi CBD",
+    "image": "images/attractions/kenya-national-archives.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Nairobi Gallery",
+    "category": "Museum",
+    "latitude": -1.2862779118550733,
+    "longitude": 36.81792713648538,
+    "description": "An art and heritage gallery located near the city center, featuring exhibitions and Kenyan cultural collections.",
+    "location_area": "Nairobi CBD",
+    "image": "images/attractions/nairobi-gallery.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Railway Museum Nairobi",
+    "category": "Museum",
+    "latitude": -1.293421319319445, 
+    "longitude": 36.82313694427449,
+    "description": "A museum dedicated to the history of rail transport in Kenya and East Africa, with locomotives and railway artifacts.",
+    "location_area": "Nairobi South / CBD edge",
+    "image": "images/attractions/nairobi-railway-museum.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Uhuru Park",
+    "category": "Park / Nature",
+    "latitude": -1.290022497430375,
+    "longitude": 36.81737452523471,
+    "description": "A large public park in central Nairobi known for open green space, recreation, and city views.",
+    "location_area": "Nairobi CBD",
+    "image": ""
+  },
+  {
+    "id": 6,
+    "name": "Karura Forest",
+    "category": "Park / Nature",
+    "latitude": -1.2357558239768438,
+    "longitude": 36.83281087540172,
+    "description": "An urban forest reserve popular for walking trails, cycling, waterfalls, caves, and nature experiences.",
+    "location_area": "Muthaiga / Limuru Road area",
+    "image":""
+  },
+  {
+    "id": 7,
+    "name": "Nairobi Arboretum",
+    "category": "Park / Nature",
+    "latitude": -1.2782154211999275,
+    "longitude": 36.80320794688126,
+    "description": "A green recreational park and botanical site with walking paths, picnic areas, and a variety of tree species.",
+    "location_area": "Kilimani / State House Road area",
+    "image":""
+  },
+  {
+    "id": 8,
+    "name": "Nairobi National Park",
+    "category": "Park / Nature",
+    "latitude": -1.3823153257325096,
+    "longitude": 36.86219480749198,
+    "description": "A wildlife park located just outside the city center, known for game viewing with Nairobi’s skyline in the background.",
+    "location_area": "Lang’ata",
+    "image":""
+  },
+  {
+    "id": 9,
+    "name": "Giraffe Centre",
+    "category": "Wildlife",
+    "latitude": -1.3764075988454403,
+    "longitude": 36.74435541197714,
+    "description": "A conservation and education center where visitors can learn about and feed endangered Rothschild giraffes.",
+    "location_area": "Lang’ata / Karen area",
+    "image":""
+  },
+  {
+    "id": 10,
+    "name": "Sheldrick Wildlife Trust",
+    "category": "Wildlife",
+    "latitude": -1.3763297400829295,
+    "longitude": 36.775351868984856,
+    "description": "A well-known elephant orphan rescue and rehabilitation center focused on wildlife conservation and education.",
+    "location_area": "Lang’ata / Nairobi National Park area",
+    "image":""
+  },
+  {
+    "id": 11,
+    "name": "Bomas of Kenya",
+    "category": "Cultural / Historical",
+    "latitude": -1.3363900456993099,
+    "longitude": 36.77027151855572,
+    "description": "A cultural center showcasing traditional Kenyan homesteads, music, dance, and heritage from different communities.",
+    "location_area": "Lang’ata",
+    "image":""
+  },
+  {
+    "id": 12,
+    "name": "Uhuru Gardens National Monument",
+    "category": "Cultural / Historical",
+    "latitude": -1.3243603752982849,
+    "longitude": 36.79841083264814,
+    "description": "A national monument and public historical site associated with Kenya’s independence and national heritage.",
+    "location_area": "Lang’ata",
+    "image":""
+  }
+]

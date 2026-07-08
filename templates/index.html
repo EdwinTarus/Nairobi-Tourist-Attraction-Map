@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nairobi Tourist Attraction Map</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body class="bg-slate-900 text-gray-900 overflow-hidden">
+
+    <header class="bg-slate-900 justify-content text-white px-4 py-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+
+            <!-- Left: Logo / App title -->
+            <div class="flex items-center shrink-0">
+                <a href="#" class="text-xl font-bold tracking-tight text-white">
+                    Nairobi Tourist Attraction Map
+                </a>
+            </div>
+
+            <!-- Middle: Navigation -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-sm font-medium text-white hover:text-blue-300 transition">
+                    Home
+                </a>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-blue-300 transition">
+                    Attractions
+                </a>
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-blue-300 transition">
+                    About
+                </a>
+            </nav>
+
+            <!-- Right: Search bar -->
+            <div class="w-full max-w-sm">
+                <div class="relative">
+                    <input type="text" id="navbar-search" placeholder="Search attractions..."
+                        class="w-full rounded-lg h-9 bg-slate-800 border border-slate-700 text-white placeholder-slate-400 px-4 py-2.5 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <span class="absolute inset-y-0 right-3 flex items-center text-slate-400">
+                        🔍
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="h-[calc(100vh-72px)] overflow-hidden">
+        <div class=" grid grid-cols-12 h-full min-h-0">
+
+            <!-- Sidebar -->
+            <aside class="col-span-3 bg-white shadow-md h-full flex flex-col min-h-0">
+
+                <!-- 1. Top section: category filters -->
+                <div class="px-4 py-4 border-b border-slate-200 shrink-0">
+                    <p class="text-sm font-semibold text-slate-500 mb-3">
+                        Filter by category
+                    </p>
+
+                    <div id="category-filters" class="flex flex-col gap-2">
+                        <button
+                            class="category-btn w-full text-left px-4 py-3 rounded-lg bg-slate-900 text-white text-sm font-medium transition"
+                            data-category="All">
+                            All Attractions
+                        </button>
+
+                        <button
+                            class="category-btn w-full text-left px-4 py-3 rounded-lg bg-slate-50 text-slate-700 text-sm font-medium hover:bg-slate-100 transition"
+                            data-category="Museum">
+                            Museum
+                        </button>
+
+                        <button
+                            class="category-btn w-full text-left px-4 py-3 rounded-lg bg-slate-50 text-slate-700 text-sm font-medium hover:bg-slate-100 transition"
+                            data-category="Park / Nature">
+                            Park / Nature
+                        </button>
+
+                        <button
+                            class="category-btn w-full text-left px-4 py-3 rounded-lg bg-slate-50 text-slate-700 text-sm font-medium hover:bg-slate-100 transition"
+                            data-category="Wildlife">
+                            Wildlife
+                        </button>
+
+                        <button
+                            class="category-btn w-full text-left px-4 py-3 rounded-lg bg-slate-50 text-slate-700 text-sm font-medium hover:bg-slate-100 transition"
+                            data-category="Cultural / Historical">
+                            Cultural / Historical
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Middle section: count + scrollable attraction list -->
+                <div class="flex-1 min-h-0 flex flex-col px-4 py-4">
+                    <p id="attraction-count" class="text-sm font-semibold text-slate-500 mb-3 shrink-0">
+                        0 attractions found
+                    </p>
+
+                    <div id="attractions-list" class="flex-1 min-h-0 overflow-y-auto space-y-2 pr-1">
+                        <!-- attraction cards injected here -->
+                    </div>
+                </div>
+
+                <!-- 3. Bottom section: always visible clear button -->
+                <div class="px-4 py-4 border-t border-slate-200 shrink-0">
+                    <button id="clear-filter-btn"
+                        class="w-full border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 font-medium py-3 rounded-lg transition">
+                        Clear Filter
+                    </button>
+                </div>
+
+            </aside>
+
+            <!-- Map section -->
+            <section class="col-span-9 h-full min-h-0">
+                <div id="map" class="w-full h-full shadow-md"></div>
+                <div id="attraction-panel"
+                    class="hidden absolute top-20 right-4 z-[1000] w-[320px] bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden flex flex-col">
+
+                    <!-- Header -->
+                    <div class="flex items-start justify-between px-5 py-4 border-b border-slate-200 shrink-0">
+                        <div>
+                            <h3 id="panel-title" class="text-lg font-semibold text-slate-900 mt-1">
+                                Attraction Name
+                            </h3>
+                        </div>
+
+                        <button id="close-panel-btn"
+                            class="ml-4 text-slate-400 hover:text-slate-700 text-xl leading-none">
+                            &times;
+                        </button>
+                    </div>
+                    <div id="panel-image-wrapper" class="shrink-0 px-5 pt-4">
+                        <div class="w-full h-44 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
+                            <img id="panel-image" src="" alt="" class="w-full h-full object-cover hidden">
+                            <div id="panel-image-placeholder"
+                                class="w-full h-full flex items-center justify-center text-sm text-slate-400">
+                                No image available
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scrollable body -->
+                    <div class="flex-1 overflow-y-auto px-5 py-4">
+
+                        <!-- Category -->
+                        <span id="panel-category"
+                            class="inline-block text-xs font-semibold bg-blue-100 text-blue-700 px-3 py-1 rounded-full mb-3">
+                            Category
+                        </span>
+
+                        <!-- Location -->
+                        <p id="panel-location" class="text-sm text-slate-500 mb-4">
+                            Location
+                        </p>
+
+                        <!-- Description -->
+                        <div class="max-h-32 overflow-y-auto pr-1 mb-4">
+                            <p id="panel-description" class="text-sm text-slate-700 leading-6">
+                                Description goes here.
+                            </p>
+                        </div>
+
+                        <!-- Quick details -->
+                        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3">
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="text-sm text-slate-500">Opening Hours</span>
+                                <span id="panel-hours" class="text-sm font-sm text-slate-800 text-right">
+                                    8:00 AM – 6:00 PM
+                                </span>
+                            </div>
+
+                            <div class="flex justify-between items-start gap-2">
+                                <span class="text-sm text-slate-500">Entry</span>
+                                <span id="panel-entry" class="text-sm font-medium text-slate-800 text-right">
+                                    Placeholder
+                                </span>
+                            </div>
+
+                        </div>
+                        <a id="panel-directions" href="#" target="_blank"
+                            class="block w-full text-center mt-6 bg-green-900 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Your JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

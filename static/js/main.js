@@ -206,12 +206,18 @@ function updateActiveCategoryButton(activeCategory) {
     categoryButtons.forEach(button => {
         const buttonCategory = button.dataset.category;
 
+         const check = button.querySelector(".category-check");
+
         if (buttonCategory === activeCategory) {
-            button.classList.remove("bg-slate-50", "text-slate-700", "hover:bg-slate-100");
-            button.classList.add("bg-slate-900", "text-white");
+            check.classList.remove("bg-white", "border-slate-300");
+            check.classList.add("bg-slate-900");
+
+            check.innerHTML = "";
         } else {
-            button.classList.remove("bg-slate-900", "text-white");
-            button.classList.add("bg-slate-50", "text-slate-700", "hover:bg-slate-100");
+            check.classList.remove("bg-slate-900");
+            check.classList.add("bg-white", "border-slate-300");
+
+            check.innerHTML = "";
         }
     });
 }
